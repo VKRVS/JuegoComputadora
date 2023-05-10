@@ -13,21 +13,9 @@ public class Main {
 
 	public static void main(String[] args) throws ScriptException, IOException {
 
-		// Menu.menuInicial();
+		Menu.menuInicial();
 
-		// Preguntas Mates
-
-		ArrayList<Integer> nums = Mates.generaNum();
-		ArrayList<String> operac = Mates.generaOperac(nums);
-		System.out.println(Mates.preguntaCompleta(nums, operac));
-
-		// Preguntas Letras
-		/*
-		 * Letras.muestraPalabra();
-		 */
-
-		// Preguntas Ingles
-		//System.out.println("Respuesta: " + Ingles.enunciado());
+		
 	}
 
 }

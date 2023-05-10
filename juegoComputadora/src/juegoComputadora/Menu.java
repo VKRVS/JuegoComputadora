@@ -40,4 +40,8 @@ public abstract class Menu {
 		}
 	};
 
+	public static void menuJugarPartida() {
+		System.out.println("");
+	}
+	
 }
