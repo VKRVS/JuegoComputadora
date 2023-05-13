@@ -1,27 +1,169 @@
 package juegoComputadora;
 
-public class PJ extends Jugador{
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.Set;
+
+public class PJ extends Jugador {
+	static File rankingFichero = new File("ranking.txt");
+	static Scanner entrada = new Scanner(System.in);
 	private int puntos;
 	private String nombre;
-	
+
 	public int getPuntos() {
 		return puntos;
 	}
+
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
+
 	public String getNombre() {
 		return nombre;
 	}
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public PJ(int puntos, String nombre) {
 		super();
-		this.puntos = puntos;
+		boolean correcto = false;
+		while (!correcto) {
+			System.out.println("Introduce un nombre de jugador (el nombre no puede contener espacios)");
+			this.nombre = entrada.next();
+			if ((this.nombre.contains(" ")) || (this.nombre.isEmpty())) {
+				System.err.println("Nombre en formato incorrecto");
+			} else {
+				correcto = true;
+			}
+
+		}
 		this.nombre = nombre;
+		this.puntos = 0;
 	}
-	
-	
+
+	public static void compruebaCreaFichero() {
+		try {
+			if (rankingFichero.createNewFile()) {
+				System.out.println("Se ha creado correctamente el fichero Ranking");
+			} else {
+				System.out.println("Se ha cargado correctamente el fichero Ranking");
+			}
+			System.out.println("Fichero localizado en: " + rankingFichero.getAbsolutePath());
+		} catch (IOException e) {
+			System.err.println("Ocurrió un error con el fichero Ranking");
+			e.printStackTrace();
+		}
+	}
+
+	public static void compruebaCreaJugador() {
+		try {
+			Scanner lector = new Scanner(rankingFichero);
+
+		} catch (FileNotFoundException e) {
+			System.err.println("Ocurrió un error con el fichero Ranking");
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void muestraJugadores() {
+		try {
+			Scanner lector = new Scanner(rankingFichero);
+			System.out.println("\nJugadores registrados en el sistema:");
+			boolean lineaImpar = true;
+			while (lector.hasNext()) {
+				if (lineaImpar) {
+					System.out.println(lector.nextLine());
+					lineaImpar = false;
+				} else {
+					lector.nextLine();
+					lineaImpar = true;
+				}
+			}
+			System.out.println("Pulsa intro para continuar");
+			String continuar = entrada.nextLine();
+
+		} catch (FileNotFoundException e) {
+			System.err.println("Ocurrió un error con el fichero Ranking");
+			e.printStackTrace();
+		}
+
+	}
+
+	public static int tamanyoFichero() throws FileNotFoundException {
+		Scanner lector = new Scanner(rankingFichero);
+		int lineas = 0;
+		while (lector.hasNext()) {
+			lector.nextLine();
+			lineas++;
+		}
+		return lineas;
+	}
+
+	public static void eliminaJugadores() throws IOException {
+		Scanner lector = new Scanner(rankingFichero);
+		// FileWriter escritor = new FileWriter(rankingFichero);
+		System.out.println("Introduce el nombre del Jugador que deseas eliminar del sistema");
+		String jugador = entrada.nextLine();
+		boolean encontrado = false;
+		int contador = 0;
+		int coincidencia = 0;
+		LinkedHashMap<String, String> supletorio = new LinkedHashMap<String, String>();
+		while (lector.hasNext()) {
+			contador++;
+			if (lector.nextLine().contains(jugador)) {
+				encontrado = true;
+				coincidencia = contador;
+			}
+		}
+		System.out.println("Encontrado en la línea: " + coincidencia);
+		System.out.println("El fichero tiene: " + contador);
+		if (encontrado) {
+			if ((coincidencia + 1) == contador) {
+				System.out.println("Es el último nombre");
+			} else {
+				Scanner lector1 = new Scanner(rankingFichero);
+				System.out.println("Entra");
+				for (int i = 0; i < (contador / 2); i++) {
+					if (i != Math.ceil(coincidencia / 2)) {
+						System.out.println("Vuelta: " + i);
+						supletorio.put(lector1.nextLine(), lector1.nextLine());
+					} else {
+						lector1.nextLine();
+						lector1.nextLine();
+					}
+				}
+				System.out.println(supletorio);
+				FileWriter escritor = new FileWriter("ranking.txt");
+				Set set = supletorio.entrySet();
+				Iterator iterator = set.iterator();
+				while (iterator.hasNext()) {
+					Map.Entry mapEntry = (Map.Entry) iterator.next();
+					System.out.println(mapEntry.getKey());
+					System.out.println(mapEntry.getValue());
+					escritor.write((String) mapEntry.getKey());
+					escritor.write("\n");
+					escritor.write((String) mapEntry.getValue());
+					if (iterator.hasNext()) {
+						escritor.write("\n");
+					}
+				}
+
+				escritor.close();
+			}
+		} else {
+			System.out.println("No hay coincidencia con ningún Jugador en el sistema");
+
+		}
+	}
 }
