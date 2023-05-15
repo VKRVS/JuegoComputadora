@@ -87,16 +87,17 @@ public abstract class Menu {
 			switch (opcion) {
 			case "1": {
 				System.out.println("Ver Jugadores");
-				PJ.muestraJugadores();
+				PJ.verJugadores();
 				break;
 			}
 			case "2": {
 				System.out.println("Añadir Jugador");
+				PJ.anadirJugador();
 				break;
 			}
 			case "3": {
 				System.out.println("Eliminar Jugador");
-				PJ.eliminaJugadores();
+				PJ.eliminaJugador();
 				break;
 			}
 			case "4": {
