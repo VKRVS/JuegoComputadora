@@ -9,30 +9,30 @@ public abstract class Menu {
 		boolean salir = false;
 		String opcion;
 		while (!salir) {
-			System.out.println("\nElige una opcion:\n" + "1.-Jugar Partida\n" + "2.-Ranking\n" + "3.-Histórico\n"
-					+ "4.-Jugadores\n" + "5.-Salir\n");
+			System.out.println("Elige una opcion:\n" + "	1.-Jugar Partida\n" + "	2.-Ranking\n" + "	3.-Histórico\n"
+					+ "	4.-Jugadores\n" + "	5.-Salir\n");
 			opcion = Main.entrada.next();
 			switch (opcion) {
 			case "1": {
-				System.out.println("Jugar Partida");
+				System.out.println("\nJugar Partida");
 				break;
 			}
 			case "2": {
-				System.out.println("Ranking");
+				System.out.println("\nRanking");
 				break;
 			}
 			case "3": {
-				System.out.println("Histórico");
+				System.out.println("\nHistórico");
 				break;
 			}
 			case "4": {
-				System.out.println("Jugadores");
+				System.out.println("\nJugadores");
 				menuJugadores();
 				break;
 			}
 			case "5": {
 				salir = true;
-				System.out.println("Salir");
+				System.out.println("\nSalir");
 				break;
 			}
 			default:
@@ -81,32 +81,32 @@ public abstract class Menu {
 		boolean volver = false;
 		String opcion;
 		while (!volver) {
-			System.out.println("\nElige una opcion:\n" + "1.-Ver Jugadores\n" + "2.-Añadir Jugador\n"
-					+ "3.-Eliminar Jugador\n" + "4.-Volver");
+			System.out.println("Elige una opcion:\n" + "	1.-Ver Jugadores\n" + "	2.-Añadir Jugador\n"
+					+ "	3.-Eliminar Jugador\n" + "	4.-Volver");
 			opcion = Main.entrada.next();
 			switch (opcion) {
 			case "1": {
-				System.out.println("Ver Jugadores");
+				System.out.println("\nVer Jugadores");
 				PJ.verJugadores();
 				break;
 			}
 			case "2": {
-				System.out.println("Añadir Jugador");
+				System.out.println("\nAñadir Jugador");
 				PJ.anadirJugador();
 				break;
 			}
 			case "3": {
-				System.out.println("Eliminar Jugador");
+				System.out.println("\nEliminar Jugador");
 				PJ.eliminaJugador();
 				break;
 			}
 			case "4": {
-				System.out.println("Volver");
+				System.out.println("\nVolver\n");
 				volver = true;
 				break;
 			}
 			default:
-				System.out.println("Introduce una opción válida");
+				System.out.println("\nIntroduce una opción válida");
 			}
 		}
 	}
