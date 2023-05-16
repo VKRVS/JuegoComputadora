@@ -19,6 +19,7 @@ public abstract class Menu {
 			}
 			case "2": {
 				System.out.println("\nRanking");
+				PJ.verRanking();
 				break;
 			}
 			case "3": {

@@ -4,8 +4,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -185,6 +189,48 @@ public class PJ extends Jugador {
 			escritor.write("0");
 			escritor.close();
 			System.out.println("El jugador " + jugador + " se añadió satisfactoriamente");
+		}
+
+	}
+
+	public static void verRanking() {
+		try {
+			Scanner lector = new Scanner(rankingFichero);
+			while (lector.hasNext()) {
+				System.out.println(lector.nextLine());
+			}
+			lector.close();
+
+		} catch (FileNotFoundException e) {
+			System.err.println("Ocurrió un error con el fichero Ranking");
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void ordenarRanking() throws IOException {
+		Scanner lector = new Scanner(rankingFichero);
+		LinkedHashMap<String, Integer> supletorio = new LinkedHashMap<String, Integer>();
+		while (lector.hasNext()) {
+			supletorio.put(lector.nextLine(), Integer.valueOf(lector.nextLine()));
+		}
+		lector.close();
+		List<Map.Entry<String, Integer>> ordenado = new ArrayList<>(supletorio.entrySet());
+		Collections.sort(ordenado, (new Comparator<Map.Entry<String, Integer>>() {
+			// Comparing two entries by value
+			public int compare(Map.Entry<String, Integer> entry1, Map.Entry<String, Integer> entry2) {
+
+				// Subtracting the entries
+				return entry1.getValue() - entry2.getValue();
+			}
+		}).reversed());
+		System.out.println(ordenado);
+
+		
+		//¡¡¡NO ESCRIBE!!!
+		FileWriter escritor = new FileWriter("ranking.txt");
+		for (int i = 0; i < (ordenado.size() - 1); i++) {
+			escritor.write(ordenado + System.lineSeparator());
 		}
 
 	}
