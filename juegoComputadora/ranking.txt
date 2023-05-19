@@ -1,0 +1,6 @@
+Jugador2
+60
+Jugador1
+50
+Jugador3
+10

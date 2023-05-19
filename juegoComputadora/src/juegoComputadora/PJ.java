@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -225,13 +226,22 @@ public class PJ extends Jugador {
 			}
 		}).reversed());
 		System.out.println(ordenado);
-
+		System.out.println(ordenado.size());
 		
-		//¡¡¡NO ESCRIBE!!!
 		FileWriter escritor = new FileWriter("ranking.txt");
-		for (int i = 0; i < (ordenado.size() - 1); i++) {
-			escritor.write(ordenado + System.lineSeparator());
+		Iterator iterator = ordenado.iterator();
+		while(iterator.hasNext()) {
+			Map.Entry mapEntry = (Map.Entry) iterator.next();
+			System.out.println("clave: "+mapEntry.getKey());
+			System.out.println("valor: "+mapEntry.getValue());
+			escritor.write((String) mapEntry.getKey());
+			escritor.write("\n");
+			escritor.write(mapEntry.getValue().toString());
+			if (iterator.hasNext()) {
+				escritor.write("\n");
+			}
 		}
+		escritor.close();
 
 	}
 }
