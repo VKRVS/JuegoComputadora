@@ -2,19 +2,23 @@ package juegoComputadora;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Menu {
 
+	public static Scanner entrada = new Scanner(System.in);
+	
 	public static void menuInicial() throws IOException {
 		boolean salir = false;
 		String opcion;
 		while (!salir) {
 			System.out.println("Elige una opcion:\n" + "	1.-Jugar Partida\n" + "	2.-Ranking\n" + "	3.-Histórico\n"
 					+ "	4.-Jugadores\n" + "	5.-Salir\n");
-			opcion = Main.entrada.next();
+			opcion = entrada.next();
 			switch (opcion) {
 			case "1": {
 				System.out.println("\nJugar Partida");
+				menuJugarPartida();
 				break;
 			}
 			case "2": {
@@ -43,39 +47,25 @@ public abstract class Menu {
 	}
 
 	public static void menuJugarPartida() {
-		System.out.println("¿Cuántos jugadores humanos van a participar en la partida? (elige entre 0-4)");
-		String cantidad = null;
-		boolean correcto = false;
-		while (correcto) {
-			switch (cantidad) {
-			case "0": {
-				ArrayList<Cpu> jugadores = new ArrayList<Cpu>();
-				jugadores.add(new Cpu(0, "cpu1"));
-				jugadores.add(new Cpu(0, "cpu2"));
-				jugadores.add(new Cpu(0, "cpu3"));
-				jugadores.add(new Cpu(0, "cpu4"));
-				// return jugadores;
-			}
-			case "1": {
-
-				break;
-			}
-			case "2": {
-
-				break;
-			}
-			case "3": {
-
-				break;
-			}
-			case "4": {
-
-				break;
-			}
-			default:
-				System.out.println("Introduce un valor comprendido entre 0 y 4, por favor");
+		boolean valido=false;
+		while (!valido) {
+			System.out.println("Elige tipo de partida:");
+			System.out.println("	1.-Partida de práctica");
+			System.out.println("	2.-Partida normal");
+			System.out.println();
+			String opcion=entrada.next();
+			if ((opcion.equals("1"))||(opcion.equals("2"))) {
+				if (opcion.equals("1")) {
+					valido=true;
+					Partida practica=new Partida(1, menuTipoPartida(), false);
+					practica.JugarPartida();
+				} else {
+					valido=true;
+					System.out.println("AQUI IRIAN COSAS");
+				}
 			}
 		}
+		
 	}
 
 	public static void menuJugadores() throws IOException {
@@ -84,7 +74,7 @@ public abstract class Menu {
 		while (!volver) {
 			System.out.println("Elige una opcion:\n" + "	1.-Ver Jugadores\n" + "	2.-Añadir Jugador\n"
 					+ "	3.-Eliminar Jugador\n" + "	4.-Volver");
-			opcion = Main.entrada.next();
+			opcion = entrada.next();
 			switch (opcion) {
 			case "1": {
 				System.out.println("\nVer Jugadores");
@@ -111,4 +101,40 @@ public abstract class Menu {
 			}
 		}
 	}
+	
+	public static int menuTipoPartida() {
+		boolean valido=false;
+		while (!false) {
+			System.out.println("¿Cuántas rondas quieres jugar?");
+			System.out.println("	1.-Partida rápida (3 preguntas)");
+			System.out.println("	2.-Partida corta (5 preguntas)");
+			System.out.println("	3.-Partida normal (10 preguntas)");
+			System.out.println("	4.-Partida larga (20 preguntas)");
+			String opcion=entrada.next();
+			switch (opcion) {
+			case "1": {
+				valido=true;
+				return 3;
+			}
+			case "2": {
+				valido=true;
+				return 5;
+			}
+			case "3": {
+				valido=true;
+				return 10;
+			}
+			case "4": {
+				valido=true;
+				return 20;
+			}
+			default:
+				System.out.println("Error. Por favor, introduce un valor válido");
+				valido=false;
+			}
+		}
+	}
+
 }
+
+

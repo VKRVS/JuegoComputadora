@@ -7,12 +7,12 @@ import javax.script.ScriptException;
 
 public class Main {
 
-	public static Scanner entrada = new Scanner(System.in);
+	public Scanner entrada = new Scanner(System.in);
 
 	public static void main(String[] args) throws ScriptException, IOException {
 
-		//Menu.menuInicial();
-		PJ.ordenarRanking();
+		Menu.menuInicial();
+		
 	}
 
 }
