@@ -3,14 +3,22 @@ package juegoComputadora;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.Normalizer;
 import java.util.Scanner;
+
 
 public class Letras extends Pregunta {
 
-	static String diccionario = "diccionario.txt";
+	String diccionario ="diccionario.txt";
+	String palabra;
+	String palabraOculta;
+
+	public Letras() throws IOException {
+		ejecucionCompleta();
+	};
 
 	// Este método lee la cantidad de líneas del archivo
-	public static int cantidadLineas() throws FileNotFoundException {
+	public int cantidadLineas() throws FileNotFoundException {
 		File archivoLector = new File("src/juegoComputadora/" + diccionario);
 		Scanner archivo = new Scanner(archivoLector);
 		int lineas = 0;
@@ -23,49 +31,65 @@ public class Letras extends Pregunta {
 	}
 
 	// Este método devuelve una palabra aleatoria del fichero
-	public static String leerPalabra() throws IOException {
+	public void leerPalabra() throws IOException {
 		File archivoLector = new File("src/juegoComputadora/" + diccionario);
 		Scanner archivo = new Scanner(archivoLector);
 		int num = Extra.aleatorio(1, cantidadLineas());
-		System.out.println("línea: " + num);
-		String palabra = null;
+		//System.out.println("línea: " + num);
+		//String palabra = null;
 		for (int i = 0; i < num; i++) {
 			palabra = archivo.next();
 		}
 		archivo.close();
-		return palabra;
+		//return palabra;
 	}
 
 	// Este método da la palabra lista para mostrar y resolver
-	public static String muestraPalabra() throws IOException {
+	public void muestraPalabra() throws IOException {
 		int cantidadOcultas = 3;
-		String palabra = leerPalabra();
+		palabraOculta=palabra;
 		System.out.println("La palabra es: " + palabra);
 		int ocultas = palabra.length() / cantidadOcultas;
 		int cantidad = 0;
 		int posicion;
-		System.out.println("cantidad de letras que se ocultarán: " + ocultas);
-		char[] array = palabra.toCharArray();
-		System.out.println(array);
+		//System.out.println("cantidad de letras que se ocultarán: " + ocultas);
+		char[] array = palabraOculta.toCharArray();
+		//System.out.println(array);
 		while (cantidad < ocultas) {
 			posicion = Extra.aleatorio(0, (array.length - 1));
 			if (array[posicion] != '*') {
 				array[posicion] = '*';
 				cantidad++;
 			}
-			System.out.println(array);
+			//System.out.println(array);
 		}
-		return palabra;
+		System.out.println(array);
+		//return palabra;
 	}
 
 	// Este método comprueba que hayas acertado y devuelve true si acertaste
-	public static boolean comprueba(String respuesta, String correcto) {
-		if (respuesta.equalsIgnoreCase(correcto)) {
+	public boolean comprueba(String respuesta, String correcto) {
+		//normalizer elimina los acentos en la nueva variable "normalizado"
+		String correctoNormalizado = Normalizer.normalize(correcto, Normalizer.Form.NFD);
+        correctoNormalizado = correctoNormalizado.replaceAll("\\p{M}", "");
+		if (correctoNormalizado.equalsIgnoreCase(respuesta)) {
 			System.out.println("¡Has acertado!\nLa respuesta era: " + correcto);
+			System.out.println();
 			return true;
 		} else {
 			System.out.println("¡Has fallado!\nLa respuesta correcta era: " + correcto);
+			System.out.println();
 			return false;
 		}
+	}
+	
+	public boolean ejecucionCompleta() throws IOException {
+		//cantidadLineas();
+		leerPalabra();
+		muestraPalabra();
+		System.out.println();
+		System.out.println("Introduce la palabra misteriosa:");
+		// Acierto=true, fallo=false
+		return comprueba(Menu.entrada.next(), palabra);
 	}
 }

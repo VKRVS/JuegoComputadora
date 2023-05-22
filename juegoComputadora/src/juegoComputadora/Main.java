@@ -11,6 +11,9 @@ public class Main {
 
 	public static void main(String[] args) throws ScriptException, IOException {
 
+		//Letras l1= new Letras ();
+		//Mates m1=new Mates();
+		//Ingles i1=new Ingles();
 		Menu.menuInicial();
 		
 	}

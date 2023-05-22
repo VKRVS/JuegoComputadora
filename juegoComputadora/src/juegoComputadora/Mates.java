@@ -131,9 +131,11 @@ public class Mates extends Pregunta {
 	public boolean comprueba(int introducido, int correcto) {
 		if (introducido == correcto) {
 			System.out.println("¡Has acertado!\nLa solución es: " + correcto);
+			System.out.println();
 			return true;
 		} else {
 			System.out.println("¡Has fallado!\nLa solución era: " + correcto);
+			System.out.println();
 			return false;
 
 		}
