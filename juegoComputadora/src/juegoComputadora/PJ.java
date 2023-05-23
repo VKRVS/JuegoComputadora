@@ -113,7 +113,28 @@ public class PJ extends Jugador {
 		lector.close();
 		return lineas;
 	}
-
+	
+	//Busca la línea en la que se encuentra un jugador en el Ranking y devuelve el valor de la línea. Devuelve 0 si no lo encuentra
+	public static int buscarCoincidencia(String jugador) throws FileNotFoundException {
+		Scanner lector = new Scanner(rankingFichero);		
+		boolean encontrado = false;
+		int contador = 0;
+		int coincidencia = 0;
+		LinkedHashMap<String, String> supletorio = new LinkedHashMap<String, String>();
+		while (lector.hasNext()) {
+			contador++;
+			if (lector.nextLine().equalsIgnoreCase(jugador)) {
+				encontrado = true;
+				coincidencia = contador;
+				lector.close();
+				return coincidencia;
+			}
+		}
+		lector.close();
+		return coincidencia;
+	}
+	
+	
 	public static void eliminaJugador() throws IOException {
 		Scanner lector = new Scanner(rankingFichero);
 		// FileWriter escritor = new FileWriter(rankingFichero);

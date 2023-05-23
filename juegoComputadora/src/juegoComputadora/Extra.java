@@ -18,7 +18,7 @@ public abstract class Extra {
 		while (!correcto) {
 			System.out.println(mensajeEntrada);
 			entradaValor = entrada.next();
-			if ((Integer.valueOf(entradaValor) >= min) || (Integer.valueOf(entradaValor) <= max)) {
+			if ((Integer.valueOf(entradaValor) >= min) && (Integer.valueOf(entradaValor) <= max)) {
 				correcto = true;
 				return Integer.valueOf(entradaValor);
 			} else {

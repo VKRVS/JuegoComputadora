@@ -61,7 +61,7 @@ public abstract class Menu {
 					"Introduce la cantidad de jugadores para la partida (mínimo 1, máximo 4)",
 					"Error, introduce un valor válido");
 			jugadoresHumanos = Extra.comprobador(0, jugadores,
-					"Introduce la cantidad de jugadores Humanos (mínimo 0, máximo" + jugadores + ")",
+					"Introduce la cantidad de jugadores Humanos (mínimo 0, máximo " + jugadores + ")",
 					"Error, introduce un valor válido");
 			Partida normal = new Partida(jugadores, jugadoresHumanos, menuTipoPartida(), 2);
 		}

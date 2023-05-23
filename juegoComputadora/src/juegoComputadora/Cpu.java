@@ -4,6 +4,7 @@ public class Cpu extends Jugador{
 	private int puntos;
 	private String nombre;
 	
+	
 	public int getPuntos() {
 		return puntos;
 	}
