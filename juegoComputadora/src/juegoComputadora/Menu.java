@@ -47,37 +47,41 @@ public abstract class Menu {
 	}
 
 	public static void menuJugarPartida() throws IOException {
-		boolean valido = false;
-		while (!valido) {
-			System.out.println("Elige tipo de partida:");
-			System.out.println("	1.-Partida de práctica");
-			System.out.println("	2.-Partida normal");
-			String opcion = entrada.next();
-			if ((opcion.equals("1")) || (opcion.equals("2"))) {
-				if (opcion.equals("1")) {
-					valido = true;
-					Partida practica = new Partida(1, menuTipoPartida(), false);
-					practica.JugarPartida();
-				} else {
-					int jugadores;
-					int jugadoresHumanos;
-					valido = true;
-					boolean correcto = false;
-					while (!correcto) {
-						System.out.println("Introduce la cantidad de jugadores (mínimo 1, máximo 4)");
-						jugadores = entrada.nextInt();
-						if ((jugadores < 1) || (jugadores > 4)) {
-							System.out.println("Error, introduce un valor válido");
-							correcto = false;
-						} else {
-							
-
-						}
-					}
-				}
-			}
+		int jugadores;
+		int jugadoresHumanos;
+		int tipo = Extra.comprobador(1, 2,
+				"Elige el tipo de partida:\n    1.-Partida de práctica\n    2.-Partida normal", null);
+		switch (tipo) {
+		case 1: {
+			Partida practica = new Partida(1, 1, menuTipoPartida(), 1);
+			break;
+		}
+		case 2: {
+			jugadores = Extra.comprobador(1, 4,
+					"Introduce la cantidad de jugadores para la partida (mínimo 1, máximo 4)",
+					"Error, introduce un valor válido");
+			jugadoresHumanos = Extra.comprobador(0, jugadores,
+					"Introduce la cantidad de jugadores Humanos (mínimo 0, máximo" + jugadores + ")",
+					"Error, introduce un valor válido");
+			Partida normal = new Partida(jugadores, jugadoresHumanos, menuTipoPartida(), 2);
+		}
 		}
 
+		/*
+		 * boolean valido = false; while (!valido) {
+		 * System.out.println("Elige tipo de partida:");
+		 * System.out.println("	1.-Partida de práctica");
+		 * System.out.println("	2.-Partida normal"); String opcion = entrada.next(); if
+		 * ((opcion.equals("1")) || (opcion.equals("2"))) { if (opcion.equals("1")) {
+		 * valido = true; Partida practica = new Partida(1, menuTipoPartida(), 1);
+		 * practica.JugarPartida(); } else { int jugadoresHumanos; int
+		 * jugadores=Extra.comprobador(1,
+		 * 4,"Introduce la cantidad de jugadores para la partida (mínimo 1, máximo 4)"
+		 * ,"Error, introduce un valor válido"); if (jugadores==1) {
+		 * jugadoresHumanos=Extra.comprobador(0, 1,
+		 * "¿Jugar partida como jugador humano (1) o ver partida de CPU (0)?",
+		 * "Error, introduce un valor válido"); } } } }
+		 */
 	}
 
 	public static void menuJugadores() throws IOException {

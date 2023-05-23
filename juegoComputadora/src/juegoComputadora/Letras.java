@@ -48,7 +48,7 @@ public class Letras extends Pregunta {
 	public void muestraPalabra() throws IOException {
 		int cantidadOcultas = 3;
 		palabraOculta=palabra;
-		System.out.println("La palabra es: " + palabra);
+		//System.out.println("La palabra es: " + palabra);
 		int ocultas = palabra.length() / cantidadOcultas;
 		int cantidad = 0;
 		int posicion;
