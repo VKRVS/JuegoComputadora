@@ -12,6 +12,7 @@ public class Ingles extends Pregunta {
 
 	static String ingles = "src/juegoComputadora/ingles.txt";
 	String letraBuena;
+	boolean acertada;
 
 	public Ingles() throws IOException {
 		ejecucionCompleta();
@@ -107,12 +108,12 @@ public class Ingles extends Pregunta {
 		}
 	}
 
-	public boolean ejecucionCompleta() throws IOException {
+	public void ejecucionCompleta() throws IOException {
 		enunciado();
 		System.out.println();
 		System.out.println("Introduce la respuesta correcta:");
 		// Acierto=true, fallo=false
-		return comprueba(Menu.entrada.next(), letraBuena);
+		acertada= comprueba(Menu.entrada.next(), letraBuena);
 	}
 
 }

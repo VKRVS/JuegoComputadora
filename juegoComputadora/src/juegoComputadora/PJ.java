@@ -54,6 +54,12 @@ public class PJ extends Jugador {
 		this.puntos = 0;
 	}
 
+	public PJ(String nombre, int puntos) {
+		super();
+		this.nombre = nombre;
+		this.puntos = 0;
+	}
+/*
 	public static void compruebaCreaFichero() {
 		try {
 			if (rankingFichero.createNewFile()) {
@@ -113,18 +119,16 @@ public class PJ extends Jugador {
 		lector.close();
 		return lineas;
 	}
-	
-	//Busca la línea en la que se encuentra un jugador en el Ranking y devuelve el valor de la línea. Devuelve 0 si no lo encuentra
+
+	// Busca la línea en la que se encuentra un jugador en el Ranking y devuelve el
+	// valor de la línea. Devuelve 0 si no lo encuentra
 	public static int buscarCoincidencia(String jugador) throws FileNotFoundException {
-		Scanner lector = new Scanner(rankingFichero);		
-		boolean encontrado = false;
+		Scanner lector = new Scanner(rankingFichero);
 		int contador = 0;
 		int coincidencia = 0;
-		LinkedHashMap<String, String> supletorio = new LinkedHashMap<String, String>();
 		while (lector.hasNext()) {
 			contador++;
 			if (lector.nextLine().equalsIgnoreCase(jugador)) {
-				encontrado = true;
 				coincidencia = contador;
 				lector.close();
 				return coincidencia;
@@ -133,8 +137,34 @@ public class PJ extends Jugador {
 		lector.close();
 		return coincidencia;
 	}
-	
-	
+
+	public static void anadirPuntos(String jugador, int puntos) throws IOException {
+		Scanner lector = new Scanner(rankingFichero);
+		int contador = 0;
+		int coincidencia=0;
+		int puntosEnFichero = 0;
+		boolean encontrado = false;
+		ArrayList supletorio=new ArrayList();
+		while (lector.hasNext()) {
+			supletorio.add(lector.nextLine());
+			supletorio.add(lector.nextLine());
+		}
+		lector.close();
+		coincidencia=supletorio.indexOf(jugador);
+		puntosEnFichero=Integer.parseInt((String) supletorio.get((coincidencia+1)));
+		supletorio.set((coincidencia+1), (puntosEnFichero+puntos));
+		FileWriter escritor = new FileWriter("ranking.txt");
+		for (int i=0;i<supletorio.size();i++) {
+			escritor.write((supletorio.get(i)).toString());
+			if ((i!=supletorio.size()-1)) {
+				escritor.write("\n");
+			}
+		}escritor.close();
+		ordenarRanking();
+		
+
+	}
+
 	public static void eliminaJugador() throws IOException {
 		Scanner lector = new Scanner(rankingFichero);
 		// FileWriter escritor = new FileWriter(rankingFichero);
@@ -248,13 +278,13 @@ public class PJ extends Jugador {
 		}).reversed());
 		System.out.println(ordenado);
 		System.out.println(ordenado.size());
-		
+
 		FileWriter escritor = new FileWriter("ranking.txt");
 		Iterator iterator = ordenado.iterator();
-		while(iterator.hasNext()) {
+		while (iterator.hasNext()) {
 			Map.Entry mapEntry = (Map.Entry) iterator.next();
-			System.out.println("clave: "+mapEntry.getKey());
-			System.out.println("valor: "+mapEntry.getValue());
+			//System.out.println("clave: " + mapEntry.getKey());
+			//System.out.println("valor: " + mapEntry.getValue());
 			escritor.write((String) mapEntry.getKey());
 			escritor.write("\n");
 			escritor.write(mapEntry.getValue().toString());
@@ -265,4 +295,5 @@ public class PJ extends Jugador {
 		escritor.close();
 
 	}
+	*/
 }

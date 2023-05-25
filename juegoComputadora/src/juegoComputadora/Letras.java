@@ -12,6 +12,7 @@ public class Letras extends Pregunta {
 	String diccionario ="diccionario.txt";
 	String palabra;
 	String palabraOculta;
+	boolean acertada;
 
 	public Letras() throws IOException {
 		ejecucionCompleta();
@@ -83,13 +84,13 @@ public class Letras extends Pregunta {
 		}
 	}
 	
-	public boolean ejecucionCompleta() throws IOException {
+	public void ejecucionCompleta() throws IOException {
 		//cantidadLineas();
 		leerPalabra();
 		muestraPalabra();
 		System.out.println();
 		System.out.println("Introduce la palabra misteriosa:");
 		// Acierto=true, fallo=false
-		return comprueba(Menu.entrada.next(), palabra);
+		acertada= comprueba(Menu.entrada.next(), palabra);
 	}
 }

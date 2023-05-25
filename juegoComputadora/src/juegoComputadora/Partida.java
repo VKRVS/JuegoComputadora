@@ -18,7 +18,9 @@ public class Partida {
 		this.jugadoresHumanos = jugadoresHumanos;
 		this.rondas = rondas;
 		this.tipo = tipo;
-		anadirJugador();
+		if ((jugadores - jugadoresHumanos) > 0) {
+			anadirJugadorCPU();
+		}
 		JugarPartida();
 	}
 
@@ -33,44 +35,67 @@ public class Partida {
 		// Partida normal
 		if (tipo == 2) {
 			for (int i = 0; i < jugadoresHumanos; i++) {
+				String nombre;
 				System.out.println("Introduce el nombre del jugador #" + (i + 1));
-				if (PJ.buscarCoincidencia(Extra.entrada.next()) != 0) {
+				nombre = Extra.entrada.next();
+				if (Ficheros.buscarCoincidencia(nombre) != 0) {
 					System.out.println("Jugador encontrado en el sistema");
+					participantes.add(new PJ(nombre, 0));
 				} else {
 					System.out.println("El jugador no existe en el sistema. Creando jugador...");
-					PJ.anadirJugador();
+					Ficheros.anadirJugador();
+				}
+			}
+			System.out.println("Comienza el juego:");
+			for (int i = 0; i < (rondas); i++) {
+				for (int j = 0; j < participantes.size(); j++) {
+					System.out.println();
+					System.out.println();
+					System.out.println("Pregunta para " + participantes.get(j).getNombre());
+					if (Ejecucion()) {
+						participantes.get(j).setPuntos((participantes.get(j).getPuntos())+1);
+						System.out.println("El jugador "+participantes.get(j).getNombre());
+						System.out.println("Tiene "+participantes.get(j).getPuntos()+ " puntos");
+					}
 				}
 			}
 
 		}
-
+		for (int i=0;i<participantes.size();i++) {
+			Ficheros.anadirPuntos(participantes.get(i).getNombre(), participantes.get(i).getPuntos());
+		}
+		Ficheros.partidaAlHistorico(participantes);
 		System.out.println();
 		System.out.println("¡FIN DE LA PARTIDA!");
 		System.out.println();
 	}
 
-	public void Ejecucion() throws IOException {
+	public boolean Ejecucion() throws IOException {
 		switch (Extra.aleatorio(1, 3)) {
 		case 1: {
 			System.out.println("Categoria: Mates");
-			new Mates();
-			break;
+			System.out.println();
+			return (new Mates().acertada);
+
 		}
 		case 2: {
 			System.out.println("Categoria: Letras");
-			new Letras();
-			break;
+			System.out.println();
+			return (new Letras().acertada);
 		}
 		case 3: {
 			System.out.println("Categoria: Ingles");
-			new Ingles();
-			break;
+			System.out.println();
+			return (new Ingles().acertada);
 		}
 		}
+		return false;
 	}
 
 	//
-	public void anadirJugador() {
-		
+	public void anadirJugadorCPU() {
+		for (int i = 0; i < (jugadores - jugadoresHumanos); i++) {
+			participantes.add(new Cpu(0, ("Cpu" + (i + 1))));
+		}
 	}
 }

@@ -23,11 +23,12 @@ public abstract class Menu {
 			}
 			case "2": {
 				System.out.println("\nRanking");
-				PJ.verRanking();
+				Ficheros.verRanking();
 				break;
 			}
 			case "3": {
 				System.out.println("\nHistórico");
+				Ficheros.verHistorico();
 				break;
 			}
 			case "4": {
@@ -94,17 +95,17 @@ public abstract class Menu {
 			switch (opcion) {
 			case "1": {
 				System.out.println("\nVer Jugadores");
-				PJ.verJugadores();
+				Ficheros.verJugadores();
 				break;
 			}
 			case "2": {
 				System.out.println("\nAñadir Jugador");
-				PJ.anadirJugador();
+				Ficheros.anadirJugador();
 				break;
 			}
 			case "3": {
 				System.out.println("\nEliminar Jugador");
-				PJ.eliminaJugador();
+				Ficheros.eliminaJugador();
 				break;
 			}
 			case "4": {

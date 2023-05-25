@@ -8,6 +8,7 @@ public class Mates extends Pregunta {
 	ArrayList<String> operaciones;
 	ArrayList<String> completo;
 	int resultadoTotal = 0;
+	boolean acertada;
 	// QUITA LOS STATIC CUANDO TERMINES DE HACER PRUEBAS EN MAIN
 
 	public Mates() {
@@ -142,7 +143,7 @@ public class Mates extends Pregunta {
 	}
 
 	// Ejecuta toda la secuencia
-	public boolean ejecucionCompleta() {
+	public void ejecucionCompleta() {
 		generaNum();
 		generaOperac(nums);
 		preguntaCompleta(nums, operaciones);
@@ -150,6 +151,6 @@ public class Mates extends Pregunta {
 		System.out.println();
 		System.out.println("Introduce el resultado de la operación:");
 		// Acierto=true, fallo=false
-		return comprueba(Menu.entrada.nextInt(), resultadoTotal);
+		acertada= comprueba(Menu.entrada.nextInt(), resultadoTotal);
 	}
 }
