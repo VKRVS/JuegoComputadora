@@ -1,14 +1,13 @@
 package juegoComputadora;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Menu {
 
 	public static Scanner entrada = new Scanner(System.in);
 
-	public static void menuInicial() throws IOException {
+	public static void menuInicial() {
 		boolean salir = false;
 		String opcion;
 		while (!salir) {
@@ -19,16 +18,19 @@ public abstract class Menu {
 			case "1": {
 				System.out.println("\nJugar Partida");
 				menuJugarPartida();
+				System.out.println();
 				break;
 			}
 			case "2": {
-				System.out.println("\nRanking");
+				System.out.println("\nRanking de Jugadores:");
 				Ficheros.verRanking();
+				System.out.println();
 				break;
 			}
 			case "3": {
-				System.out.println("\nHistórico");
+				System.out.println("\nHistórico de Partidas:");
 				Ficheros.verHistorico();
+				System.out.println();
 				break;
 			}
 			case "4": {
@@ -47,14 +49,19 @@ public abstract class Menu {
 		}
 	}
 
-	public static void menuJugarPartida() throws IOException {
+	public static void menuJugarPartida() {
 		int jugadores;
 		int jugadoresHumanos;
 		int tipo = Extra.comprobador(1, 2,
 				"Elige el tipo de partida:\n    1.-Partida de práctica\n    2.-Partida normal", null);
 		switch (tipo) {
 		case 1: {
-			Partida practica = new Partida(1, 1, menuTipoPartida(), 1);
+			try {
+				new Partida(1, 1, menuTipoPartida(), 1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		}
 		case 2: {
@@ -64,28 +71,18 @@ public abstract class Menu {
 			jugadoresHumanos = Extra.comprobador(0, jugadores,
 					"Introduce la cantidad de jugadores Humanos (mínimo 0, máximo " + jugadores + ")",
 					"Error, introduce un valor válido");
-			Partida normal = new Partida(jugadores, jugadoresHumanos, menuTipoPartida(), 2);
+			try {
+				new Partida(jugadores, jugadoresHumanos, menuTipoPartida(), 2);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		}
 
-		/*
-		 * boolean valido = false; while (!valido) {
-		 * System.out.println("Elige tipo de partida:");
-		 * System.out.println("	1.-Partida de práctica");
-		 * System.out.println("	2.-Partida normal"); String opcion = entrada.next(); if
-		 * ((opcion.equals("1")) || (opcion.equals("2"))) { if (opcion.equals("1")) {
-		 * valido = true; Partida practica = new Partida(1, menuTipoPartida(), 1);
-		 * practica.JugarPartida(); } else { int jugadoresHumanos; int
-		 * jugadores=Extra.comprobador(1,
-		 * 4,"Introduce la cantidad de jugadores para la partida (mínimo 1, máximo 4)"
-		 * ,"Error, introduce un valor válido"); if (jugadores==1) {
-		 * jugadoresHumanos=Extra.comprobador(0, 1,
-		 * "¿Jugar partida como jugador humano (1) o ver partida de CPU (0)?",
-		 * "Error, introduce un valor válido"); } } } }
-		 */
 	}
 
-	public static void menuJugadores() throws IOException {
+	public static void menuJugadores() {
 		boolean volver = false;
 		String opcion;
 		while (!volver) {

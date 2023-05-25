@@ -14,14 +14,27 @@ public class Letras extends Pregunta {
 	String palabraOculta;
 	boolean acertada;
 
-	public Letras() throws IOException {
+	public Letras() {
 		ejecucionCompleta();
+	};
+	
+	public Letras(int cpu) {
+		leerPalabra();
+		muestraPalabra();
+		System.out.println();
+		acertada= comprueba("", palabra);
 	};
 
 	// Este método lee la cantidad de líneas del archivo
-	public int cantidadLineas() throws FileNotFoundException {
+	public int cantidadLineas() {
 		File archivoLector = new File("src/juegoComputadora/" + diccionario);
-		Scanner archivo = new Scanner(archivoLector);
+		Scanner archivo = null;
+		try {
+			archivo = new Scanner(archivoLector);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int lineas = 0;
 		while (archivo.hasNext()) {
 			archivo.next();
@@ -32,9 +45,15 @@ public class Letras extends Pregunta {
 	}
 
 	// Este método devuelve una palabra aleatoria del fichero
-	public void leerPalabra() throws IOException {
+	public void leerPalabra() {
 		File archivoLector = new File("src/juegoComputadora/" + diccionario);
-		Scanner archivo = new Scanner(archivoLector);
+		Scanner archivo = null;
+		try {
+			archivo = new Scanner(archivoLector);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int num = Extra.aleatorio(1, cantidadLineas());
 		//System.out.println("línea: " + num);
 		//String palabra = null;
@@ -46,7 +65,7 @@ public class Letras extends Pregunta {
 	}
 
 	// Este método da la palabra lista para mostrar y resolver
-	public void muestraPalabra() throws IOException {
+	public void muestraPalabra() {
 		int cantidadOcultas = 3;
 		palabraOculta=palabra;
 		//System.out.println("La palabra es: " + palabra);
@@ -84,7 +103,7 @@ public class Letras extends Pregunta {
 		}
 	}
 	
-	public void ejecucionCompleta() throws IOException {
+	public void ejecucionCompleta() {
 		//cantidadLineas();
 		leerPalabra();
 		muestraPalabra();

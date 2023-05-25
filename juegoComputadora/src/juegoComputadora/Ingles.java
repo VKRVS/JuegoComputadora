@@ -14,83 +14,100 @@ public class Ingles extends Pregunta {
 	String letraBuena;
 	boolean acertada;
 
-	public Ingles() throws IOException {
+	public Ingles() {
 		ejecucionCompleta();
 	}
 
+	public Ingles(int cpu) {
+		enunciado();
+		System.out.println();
+		acertada = comprueba(Extra.letraAleatoria(), letraBuena);
+	}
+
 	// Este método devuelve la cantidad de líneas del fichero
-	public int cantidadLineas() throws FileNotFoundException {
+	public int cantidadLineas() {
 		File archivoLector = new File(ingles);
-		Scanner archivo = new Scanner(archivoLector);
+		Scanner archivo = null;
+		try {
+			archivo = new Scanner(archivoLector);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		int lineas = 0;
 		while (archivo.hasNext()) {
 			archivo.nextLine();
 			lineas++;
 		}
 		archivo.close();
-		//System.out.println("cantidad de líneas: " + lineas);
+		// System.out.println("cantidad de líneas: " + lineas);
 		return lineas;
 	}
 
 	// Este método devuelve una línea aleatoria que se corresponde con un enunciado
-	public int lineaAleatoria() throws FileNotFoundException {
+	public int lineaAleatoria() {
 		int num = 1;
 		while ((num % 5 != 0) || (num == 5000)) {
 			num = Extra.aleatorio(0, cantidadLineas());
 		}
-		//System.out.println("línea número: " + (num + 1));
+		// System.out.println("línea número: " + (num + 1));
 		return num;
 	}
 
 	// Este método pinta por pantalla el enunciado con las opciones desordenadas y
 	// devuelve la letra correcta
-	public void enunciado() throws IOException {
+	public void enunciado() {
 		int enunciado = lineaAleatoria();
 		// String letraBuena = null;
-		System.out.println(Files.readAllLines(Paths.get(ingles)).get(enunciado));
-		String buena = Files.readAllLines(Paths.get(ingles)).get(enunciado + 1);
-		String mala1 = Files.readAllLines(Paths.get(ingles)).get(enunciado + 2);
-		String mala2 = Files.readAllLines(Paths.get(ingles)).get(enunciado + 3);
-		String mala3 = Files.readAllLines(Paths.get(ingles)).get(enunciado + 4);
-		ArrayList<String> opciones = new ArrayList<String>();
-		opciones.add(buena);
-		opciones.add(mala1);
-		opciones.add(mala2);
-		opciones.add(mala3);
-		int opcion;
-		while (!opciones.isEmpty()) {
-			opcion = Extra.aleatorio(0, (opciones.size() - 1));
-			switch (opciones.size()) {
-			case 4: {
-				System.out.println("	A. - " + opciones.get(opcion));
-				if (opciones.get(opcion).equals(buena)) {
-					letraBuena = "A";
+		try {
+			System.out.println(Files.readAllLines(Paths.get(ingles)).get(enunciado));
+			String buena = Files.readAllLines(Paths.get(ingles)).get(enunciado + 1);
+			String mala1 = Files.readAllLines(Paths.get(ingles)).get(enunciado + 2);
+			String mala2 = Files.readAllLines(Paths.get(ingles)).get(enunciado + 3);
+			String mala3 = Files.readAllLines(Paths.get(ingles)).get(enunciado + 4);
+			ArrayList<String> opciones = new ArrayList<String>();
+			opciones.add(buena);
+			opciones.add(mala1);
+			opciones.add(mala2);
+			opciones.add(mala3);
+			int opcion;
+			while (!opciones.isEmpty()) {
+				opcion = Extra.aleatorio(0, (opciones.size() - 1));
+				switch (opciones.size()) {
+				case 4: {
+					System.out.println("	A. - " + opciones.get(opcion));
+					if (opciones.get(opcion).equals(buena)) {
+						letraBuena = "A";
+					}
+					break;
 				}
-				break;
-			}
-			case 3: {
-				System.out.println("	B. - " + opciones.get(opcion));
-				if (opciones.get(opcion).equals(buena)) {
-					letraBuena = "B";
+				case 3: {
+					System.out.println("	B. - " + opciones.get(opcion));
+					if (opciones.get(opcion).equals(buena)) {
+						letraBuena = "B";
+					}
+					break;
 				}
-				break;
-			}
-			case 2: {
-				System.out.println("	C. - " + opciones.get(opcion));
-				if (opciones.get(opcion).equals(buena)) {
-					letraBuena = "C";
+				case 2: {
+					System.out.println("	C. - " + opciones.get(opcion));
+					if (opciones.get(opcion).equals(buena)) {
+						letraBuena = "C";
+					}
+					break;
 				}
-				break;
-			}
-			case 1: {
-				System.out.println("	D. - " + opciones.get(opcion));
-				if (opciones.get(opcion).equals(buena)) {
-					letraBuena = "D";
+				case 1: {
+					System.out.println("	D. - " + opciones.get(opcion));
+					if (opciones.get(opcion).equals(buena)) {
+						letraBuena = "D";
+					}
+					break;
 				}
-				break;
+				}
+				opciones.remove(opcion);
 			}
-			}
-			opciones.remove(opcion);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		// return letraBuena;
 
@@ -108,12 +125,12 @@ public class Ingles extends Pregunta {
 		}
 	}
 
-	public void ejecucionCompleta() throws IOException {
+	public void ejecucionCompleta() {
 		enunciado();
 		System.out.println();
 		System.out.println("Introduce la respuesta correcta:");
 		// Acierto=true, fallo=false
-		acertada= comprueba(Menu.entrada.next(), letraBuena);
+		acertada = comprueba(Menu.entrada.next(), letraBuena);
 	}
 
 }

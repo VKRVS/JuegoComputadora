@@ -14,7 +14,7 @@ public abstract class Extra {
 
 	public static int comprobador(int min, int max, String mensajeEntrada, String mensajeMal) {
 		boolean correcto = false;
-		String entradaValor = ""; 
+		String entradaValor = "";
 		while (!correcto) {
 			System.out.println(mensajeEntrada);
 			entradaValor = entrada.next();
@@ -27,6 +27,25 @@ public abstract class Extra {
 			}
 		}
 		return Integer.valueOf(entradaValor);
+	}
+
+	public static String letraAleatoria() {
+		int posible = (int) ((Math.random() * ((4 - 1) + 1)) + 1);
+		switch (posible) {
+		case 1: {
+			return "a";
+		}
+		case 2: {
+			return "b";
+		}
+		case 3: {
+			return "c";
+		}
+		case 4: {
+			return "d";
+		}
+		}
+		return null;
 	}
 
 }

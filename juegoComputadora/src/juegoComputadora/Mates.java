@@ -18,6 +18,18 @@ public class Mates extends Pregunta {
 		ejecucionCompleta();
 	}
 
+	public Mates(int cpu) {
+		nums = new ArrayList<Integer>();
+		operaciones = new ArrayList<String>();
+		completo = new ArrayList<String>();
+		generaNum();
+		generaOperac(nums);
+		preguntaCompleta(nums, operaciones);
+		preguntaCompletaNum(nums, operaciones);
+		System.out.println();
+		acertada = comprueba(String.valueOf(resultadoTotal), resultadoTotal);
+	}
+
 	// Método que genera los números posibles
 	public void generaNum() {
 		// estas variables representan los posibles valores de la cantidad de numeros a
@@ -34,7 +46,7 @@ public class Mates extends Pregunta {
 	}
 
 	// Método que genera las operaciones
-	public void generaOperac(ArrayList nums) {
+	public void generaOperac(ArrayList<Integer> nums) {
 		// ArrayList<String> operaciones = new ArrayList<String>();
 		for (int i = 0; i < (nums.size() - 1); i++) {
 			switch (Extra.aleatorio(1, 3)) {
@@ -50,10 +62,8 @@ public class Mates extends Pregunta {
 				operaciones.add("*");
 				break;
 			}
-
 			}
 		}
-
 	}
 
 	// Este método genera el enunciado de la pregunta pasandole el array de numeros
@@ -123,22 +133,28 @@ public class Mates extends Pregunta {
 			}
 		}
 		// Muestra la respuesta:
-		System.out.println("Respuesta: " + nums);
+		// System.out.println("Respuesta: " + nums);
 		// System.out.println("array oper: " + operac);
 		resultadoTotal = nums.get(0);
 	}
 
 	// Método que comprueba si has acertado
-	public boolean comprueba(int introducido, int correcto) {
-		if (introducido == correcto) {
-			System.out.println("¡Has acertado!\nLa solución es: " + correcto);
-			System.out.println();
-			return true;
+	public boolean comprueba(String introducido, int correcto) {
+		if (introducido.matches("-?\\d+(\\.\\d+)?")) {
+
+			if (Integer.parseInt(introducido) == correcto) {
+				System.out.println("¡Has acertado!\nLa solución es: " + correcto);
+				System.out.println();
+				return true;
+			} else {
+				System.out.println("¡Has fallado!\nLa solución era: " + correcto);
+				System.out.println();
+				return false;
+			}
 		} else {
 			System.out.println("¡Has fallado!\nLa solución era: " + correcto);
 			System.out.println();
 			return false;
-
 		}
 	}
 
@@ -151,6 +167,6 @@ public class Mates extends Pregunta {
 		System.out.println();
 		System.out.println("Introduce el resultado de la operación:");
 		// Acierto=true, fallo=false
-		acertada= comprueba(Menu.entrada.nextInt(), resultadoTotal);
+		acertada = comprueba((Menu.entrada.next()), resultadoTotal);
 	}
 }

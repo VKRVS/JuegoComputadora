@@ -1,6 +1,2 @@
-Jugador3
-50
-Jugador2
-30
-Jugador1
-29
+Daniel
+1
