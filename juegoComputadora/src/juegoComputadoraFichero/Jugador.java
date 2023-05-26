@@ -1,4 +1,4 @@
-package juegoComputadora;
+package juegoComputadoraFichero;
 
 public abstract class Jugador {
 

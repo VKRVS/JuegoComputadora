@@ -1,4 +1,4 @@
-package juegoComputadora;
+package juegoComputadoraFichero;
 
 import java.util.Scanner;
 

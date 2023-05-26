@@ -1,4 +1,4 @@
-package juegoComputadora;
+package juegoComputadoraFichero;
 
 public class Cpu extends Jugador {
 	private int puntos;
