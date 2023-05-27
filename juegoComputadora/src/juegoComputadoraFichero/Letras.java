@@ -2,12 +2,11 @@ package juegoComputadoraFichero;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.text.Normalizer;
 import java.util.Scanner;
 
 
-public class Letras extends Pregunta {
+public class Letras {
 
 	String diccionario ="diccionario.txt";
 	String palabra;
@@ -27,7 +26,7 @@ public class Letras extends Pregunta {
 
 	// Este método lee la cantidad de líneas del archivo
 	public int cantidadLineas() {
-		File archivoLector = new File("src/juegoComputadora/" + diccionario);
+		File archivoLector = new File(diccionario);
 		Scanner archivo = null;
 		try {
 			archivo = new Scanner(archivoLector);
@@ -46,7 +45,7 @@ public class Letras extends Pregunta {
 
 	// Este método devuelve una palabra aleatoria del fichero
 	public void leerPalabra() {
-		File archivoLector = new File("src/juegoComputadora/" + diccionario);
+		File archivoLector = new File(diccionario);
 		Scanner archivo = null;
 		try {
 			archivo = new Scanner(archivoLector);
@@ -103,6 +102,7 @@ public class Letras extends Pregunta {
 		}
 	}
 	
+	//ejecuta toda la secuencia
 	public void ejecucionCompleta() {
 		//cantidadLineas();
 		leerPalabra();
@@ -110,6 +110,6 @@ public class Letras extends Pregunta {
 		System.out.println();
 		System.out.println("Introduce la palabra misteriosa:");
 		// Acierto=true, fallo=false
-		acertada= comprueba(Menu.entrada.next(), palabra);
+		acertada= comprueba(Extra.entrada.next(), palabra);
 	}
 }

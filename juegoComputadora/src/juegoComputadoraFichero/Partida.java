@@ -1,6 +1,5 @@
 package juegoComputadoraFichero;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Partida {
@@ -12,7 +11,7 @@ public class Partida {
 	// 1=practica, 2=normal
 	int tipo;
 
-	public Partida(int jugadores, int jugadoresHumanos, int rondas, int tipo) throws IOException {
+	public Partida(int jugadores, int jugadoresHumanos, int rondas, int tipo) {
 		participantes = new ArrayList<Jugador>();
 		this.jugadores = jugadores;
 		this.jugadoresHumanos = jugadoresHumanos;

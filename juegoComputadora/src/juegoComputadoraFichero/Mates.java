@@ -2,14 +2,13 @@ package juegoComputadoraFichero;
 
 import java.util.ArrayList;
 
-public class Mates extends Pregunta {
+public class Mates {
 
 	ArrayList<Integer> nums;
 	ArrayList<String> operaciones;
 	ArrayList<String> completo;
 	int resultadoTotal = 0;
 	boolean acertada;
-	// QUITA LOS STATIC CUANDO TERMINES DE HACER PRUEBAS EN MAIN
 
 	public Mates() {
 		nums = new ArrayList<Integer>();
@@ -167,6 +166,6 @@ public class Mates extends Pregunta {
 		System.out.println();
 		System.out.println("Introduce el resultado de la operación:");
 		// Acierto=true, fallo=false
-		acertada = comprueba((Menu.entrada.next()), resultadoTotal);
+		acertada = comprueba((Extra.entrada.next()), resultadoTotal);
 	}
 }

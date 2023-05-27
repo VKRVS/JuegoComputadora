@@ -1,6 +1,6 @@
 package juegoComputadoraFichero;
 
-public abstract class Jugador {
+public class Jugador {
 
 	private int puntos;
 	private String nombre;

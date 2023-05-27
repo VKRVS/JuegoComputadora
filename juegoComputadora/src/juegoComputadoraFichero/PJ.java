@@ -1,11 +1,6 @@
 package juegoComputadoraFichero;
 
-import java.io.File;
-import java.util.Scanner;
-
 public class PJ extends Jugador {
-	static File rankingFichero = new File("ranking.txt");
-	static Scanner entrada = new Scanner(System.in);
 	private int puntos;
 	private String nombre;
 
@@ -30,7 +25,7 @@ public class PJ extends Jugador {
 		boolean correcto = false;
 		while (!correcto) {
 			System.out.println("Introduce un nombre de jugador (el nombre no puede contener espacios)");
-			this.nombre = entrada.next();
+			this.nombre = Extra.entrada.next();
 			if ((this.nombre.contains(" ")) || (this.nombre.isEmpty())) {
 				System.err.println("Nombre en formato incorrecto");
 			} else {

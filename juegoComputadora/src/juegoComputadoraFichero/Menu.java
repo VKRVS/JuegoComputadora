@@ -1,11 +1,8 @@
 package juegoComputadoraFichero;
 
 import java.io.IOException;
-import java.util.Scanner;
 
 public abstract class Menu {
-
-	public static Scanner entrada = new Scanner(System.in);
 
 	public static void menuInicial() {
 		boolean salir = false;
@@ -13,7 +10,7 @@ public abstract class Menu {
 		while (!salir) {
 			System.out.println("Elige una opcion:\n" + "	1.-Jugar Partida\n" + "	2.-Ranking\n" + "	3.-Histórico\n"
 					+ "	4.-Jugadores\n" + "	5.-Salir");
-			opcion = entrada.next();
+			opcion = Extra.entrada.next();
 			switch (opcion) {
 			case "1": {
 				System.out.println("\nJugar Partida");
@@ -56,12 +53,7 @@ public abstract class Menu {
 				"Elige el tipo de partida:\n    1.-Partida de práctica\n    2.-Partida normal", null);
 		switch (tipo) {
 		case 1: {
-			try {
-				new Partida(1, 1, menuTipoPartida(), 1);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			new Partida(1, 1, menuTipoPartida(), 1);
 			break;
 		}
 		case 2: {
@@ -71,12 +63,7 @@ public abstract class Menu {
 			jugadoresHumanos = Extra.comprobador(0, jugadores,
 					"Introduce la cantidad de jugadores Humanos (mínimo 0, máximo " + jugadores + ")",
 					"Error, introduce un valor válido");
-			try {
-				new Partida(jugadores, jugadoresHumanos, menuTipoPartida(), 2);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			new Partida(jugadores, jugadoresHumanos, menuTipoPartida(), 2);
 		}
 		}
 
@@ -88,7 +75,7 @@ public abstract class Menu {
 		while (!volver) {
 			System.out.println("Elige una opcion:\n" + "	1.-Ver Jugadores\n" + "	2.-Añadir Jugador\n"
 					+ "	3.-Eliminar Jugador\n" + "	4.-Volver");
-			opcion = entrada.next();
+			opcion = Extra.entrada.next();
 			switch (opcion) {
 			case "1": {
 				System.out.println("\nVer Jugadores");
@@ -124,7 +111,7 @@ public abstract class Menu {
 			System.out.println("	2.-Partida corta (5 preguntas)");
 			System.out.println("	3.-Partida normal (10 preguntas)");
 			System.out.println("	4.-Partida larga (20 preguntas)");
-			String opcion = entrada.next();
+			String opcion = Extra.entrada.next();
 			switch (opcion) {
 			case "1": {
 				valido = true;

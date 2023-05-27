@@ -18,7 +18,6 @@ public class Ficheros {
 
 	static File rankingFichero = new File("ranking.txt");
 	static File historicoFichero = new File("historico.txt");
-	static Scanner entrada = new Scanner(System.in);
 
 	public static void compruebaCreaFichero() {
 		try {
@@ -166,7 +165,7 @@ public class Ficheros {
 
 			// FileWriter escritor = new FileWriter(rankingFichero);
 			System.out.println("Introduce el nombre del Jugador que deseas eliminar del sistema");
-			String jugador = entrada.next();
+			String jugador = Extra.entrada.next();
 			boolean encontrado = false;
 			int contador = 0;
 			int coincidencia = 0;
@@ -232,8 +231,8 @@ public class Ficheros {
 
 			// FileWriter escritor = new FileWriter(rankingFichero);
 			System.out.println("Introduce el nombre del Jugador que deseas añadir al sistema");
-			String jugador = entrada.next();
-			entrada.nextLine();
+			String jugador = Extra.entrada.next();
+			Extra.entrada.nextLine();
 			boolean encontrado = false;
 			while (lector.hasNext()) {
 				if (lector.nextLine().equalsIgnoreCase(jugador)) {
@@ -433,7 +432,6 @@ public class Ficheros {
 			lector.close();
 
 		} catch (FileNotFoundException e) {
-			System.err.println("Ocurrió un error con el fichero Histórico");
 			// e.printStackTrace();
 			System.err.println("Ocurrió un error con el fichero Historico");
 			compruebaCreaHistorico();

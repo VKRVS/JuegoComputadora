@@ -8,9 +8,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Ingles extends Pregunta {
+public class Ingles {
 
-	static String ingles = "src/juegoComputadora/ingles.txt";
+	static String ingles = "ingles.txt";
 	String letraBuena;
 	boolean acertada;
 
@@ -130,7 +130,7 @@ public class Ingles extends Pregunta {
 		System.out.println();
 		System.out.println("Introduce la respuesta correcta:");
 		// Acierto=true, fallo=false
-		acertada = comprueba(Menu.entrada.next(), letraBuena);
+		acertada = comprueba(Extra.entrada.next(), letraBuena);
 	}
 
 }
