@@ -19,15 +19,7 @@
 
 ## 📂 Estructura del Proyecto
 
-JuegoComputadora/
-├── .settings/ # Configuraciones del entorno de desarrollo
-├── bin/ # Archivos compilados
-├── juegoComputadora/ # Código fuente principal
-│ ├── Main.java # Clase principal que inicia el juego
-│ ├── Juego.java # Lógica del juego
-│ └── Computadora.java # Lógica de la "IA" del juego
-├── .classpath # Configuración de clases
-└── .project # Configuración del proyecto
+<pre> ``` JuegoComputadora/ ├── .settings/ # Configuraciones del entorno de desarrollo ├── bin/ # Archivos compilados ├── juegoComputadora/ # Código fuente principal │ ├── Main.java # Clase principal que inicia el juego │ ├── Juego.java # Lógica del juego │ └── Computadora.java # Lógica de la "IA" del juego ├── .classpath # Configuración de clases └── .project # Configuración del proyecto ``` </pre>
 
 
 ## 🛠️ Instalación y Ejecución
