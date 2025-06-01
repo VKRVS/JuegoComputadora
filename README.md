@@ -1,6 +1,6 @@
 # 🎮 JuegoComputadora
 
-**JuegoComputadora** es un proyecto desarrollado en Java que simula un juego de computadora con lógica de inteligencia artificial básica. Este proyecto fue creado como parte de mi formación en el *Máster en Big Data e Inteligencia Artificial* en Tajamar Professional Education.
+**JuegoComputadora** es un proyecto desarrollado en Java que simula un juego de computadora con lógica de inteligencia artificial básica. Este proyecto fue creado como parte de mi formación en el *CFGS Desarrollo Apliaciones Multiplataforma*.
 
 ## 🧠 Características Principales
 
