@@ -1,6 +1,6 @@
 # 🎮 JuegoComputadora
 
-**JuegoComputadora** es un proyecto desarrollado en Java que simula un juego de computadora con lógica de inteligencia artificial básica. Este proyecto fue creado como parte de mi formación en el *CFGS Desarrollo Apliaciones Multiplataforma*.
+**JuegoComputadora** es un proyecto desarrollado en Java que simula el juego del ahorcado, el/los jugadores compiten entre sí o contra la 'máquina' para acertar letras y descubrir la palabra oculta. Este proyecto fue creado como parte de mi formación en el *CFGS Desarrollo Apliaciones Multiplataforma*.
 
 ## 🧠 Características Principales
 
